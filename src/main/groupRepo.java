@@ -24,18 +24,23 @@ public class groupRepo {
         }
     }
     private static List<String[]> list = new ArrayList<>();
-    public static String prevName = "";
 
 
     public static void groupUrl(String url) {
         String repoName = url.substring(19,url.indexOf("/",19));
-        if (prevName.equals(repoName)){
-            String[] row = list.get(list.size()-1);
-            row[2] += "\n";
-            row[2] += url;
-            list.set(list.size()-1,row);
-        }else {
-            prevName = repoName;
+
+        boolean flag = false;
+        for (int i=0; i< list.size(); i++){
+            if ((list.get(i))[0].equals(repoName)){
+                (list.get(i))[2] += "\n";
+                (list.get(i))[2] += url;
+                flag = true;
+                break;
+            }
+        }
+
+        if (!flag)
+        {
             driver.get(url);
             WebElement webElement = driver.findElement(new By.ById("repo-stars-counter-star"));
 
@@ -65,7 +70,7 @@ public class groupRepo {
 
         while (sc.hasNext()){
             String url = sc.next();
-            System.out.println(url);
+           //System.out.println(url);
             groupUrl(url);
         }
 
