@@ -67,6 +67,7 @@ public class launchBrowser {
         }
         writer.write(stringBuilder.toString());
         stringBuilder = new StringBuilder();
+        writer.flush();
     }
 
 
