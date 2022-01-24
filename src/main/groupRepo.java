@@ -25,7 +25,7 @@ public class groupRepo {
 
 
     public static void groupUrl(String url) {
-        String repoName = url.substring(19,url.indexOf("/",19));
+        String repoName = url.substring(19,url.indexOf("/",url.indexOf("/",19)+1));
 
         boolean flag = false;
         for (int i=0; i< list.size(); i++){
@@ -68,7 +68,7 @@ public class groupRepo {
 
         while (sc.hasNext()){
             String url = sc.next();
-           //System.out.println(url);
+           System.out.println(url);
             groupUrl(url);
         }
 
